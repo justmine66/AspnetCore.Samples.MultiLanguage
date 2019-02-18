@@ -1,0 +1,29 @@
+@{
+    var request = Context.Request;
+    var requestUICultureName = CultureAccessor.RequestCulture.UICulture.Name;
+}
+<form asp-controller="Settings"
+      asp-action="Language"
+      asp-route-returnurl="@string.Concat(request.Path,request.QueryString)"
+      method="post"
+      id="setting_language_form">
+    <div class="m-list-settings__heading">@L["Language:"]</div>
+    @foreach (var culture in CultureAccessor.SupportedUICultures)
+    {
+        <div class="m-list-settings__item">
+            <span class="m-list-settings__item-label">@L[culture.Name]</span>
+            <span class="m-list-settings__item-control">
+                <span class="m-switch m-switch--outline m-switch--icon-check m-switch--brand">
+                    <label>
+                        <input type="radio"
+                               name="culture"
+                               value="@culture.Name"
+                               onchange="document.getElementById('setting_language_form').submit()"
+                               checked="@(culture.Name==requestUICultureName)">
+                        <span></span>
+                    </label>
+                </span>
+            </span>
+        </div>
+    }
+</form>
