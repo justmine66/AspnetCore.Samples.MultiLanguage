@@ -1,8 +1,6 @@
-using System;
-
-namespace MultiLanguage.Models
+namespace MultiLanguage.ViewModels
 {
-    public class ErrorViewModel
+    public class ErrorView
     {
         public string RequestId { get; set; }
 

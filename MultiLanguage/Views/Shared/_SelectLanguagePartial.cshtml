@@ -1,14 +1,13 @@
 @{
     var request = Context.Request;
-    var requestUICultureName = CultureAccessor.RequestCulture.UICulture.Name;
 }
 <form asp-controller="Settings"
       asp-action="Language"
       asp-route-returnurl="@string.Concat(request.Path,request.QueryString)"
       method="post"
-      id="setting_language_form">
+      id="set_language_form">
     <div class="m-list-settings__heading">@L["Language:"]</div>
-    @foreach (var culture in CultureAccessor.SupportedUICultures)
+    @foreach (var culture in G11N.SupportedUICultures)
     {
         <div class="m-list-settings__item">
             <span class="m-list-settings__item-label">@L[culture.Name]</span>
@@ -18,8 +17,8 @@
                         <input type="radio"
                                name="culture"
                                value="@culture.Name"
-                               onchange="document.getElementById('setting_language_form').submit()"
-                               checked="@(culture.Name==requestUICultureName)">
+                               onchange="document.getElementById('set_language_form').submit()"
+                               checked="@(culture.Name==L10N.UiCulture.Name?"checked":"")">
                         <span></span>
                     </label>
                 </span>

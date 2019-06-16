@@ -4,28 +4,27 @@ using Microsoft.Extensions.Configuration;
 using System;
 using System.Globalization;
 
-namespace MultiLanguage.Extensions
+namespace MultiLanguage.Infrastructure.I18N
 {
-    public static class LocalizationMiddlewareExtensions
+    public static class ApplicationBuilderExtension
     {
-        public static IApplicationBuilder UseLocalization(
+        public static IApplicationBuilder UseI18N(
             this IApplicationBuilder app,
             IConfiguration configuration)
         {
             if (app == null)
                 throw new ArgumentNullException(nameof(app));
 
-            var supportedCultures = configuration.GetCultures();
+            var cultures = configuration.GetSupportedCultures();
 
             app.UseRequestLocalization(new RequestLocalizationOptions
             {
-                DefaultRequestCulture = new RequestCulture(CultureInfo.CurrentCulture),
-                SupportedCultures = supportedCultures,
-                SupportedUICultures = supportedCultures
+                DefaultRequestCulture = new RequestCulture(CultureInfo.CurrentUICulture),
+                SupportedCultures = cultures,
+                SupportedUICultures = cultures
             });
 
             return app;
         }
     }
-
 }
