@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Localization;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Globalization;
+using MultiLanguage.Infrastructure.I18N;
 
 namespace MultiLanguage.Infrastructure.I18N
 {
@@ -16,12 +17,13 @@ namespace MultiLanguage.Infrastructure.I18N
                 throw new ArgumentNullException(nameof(app));
 
             var cultures = configuration.GetSupportedCultures();
+            var uiCultures = configuration.GetSupportedUICultures();
 
             app.UseRequestLocalization(new RequestLocalizationOptions
             {
                 DefaultRequestCulture = new RequestCulture(CultureInfo.CurrentUICulture),
                 SupportedCultures = cultures,
-                SupportedUICultures = cultures
+                SupportedUICultures = uiCultures
             });
 
             return app;

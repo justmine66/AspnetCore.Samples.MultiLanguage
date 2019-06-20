@@ -1,99 +1,98 @@
-﻿﻿@using MultiLanguage.Infrastructure.Authentication
+﻿@using MultiLanguage.Infrastructure.Authentication
+
 @inject SignedInManager SignedInManager
 
 @if (SignedInManager.IsSignedIn(User))
 {
     var appUser = UserManager.GetApplicationUser(User);
-<li class="m-nav__item m-topbar__user-profile m-topbar__user-profile--img  m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--header-bg-fill m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light" m-dropdown-toggle="click">
-    <a href="#" class="m-nav__link m-dropdown__toggle">
-        <span class="m-topbar__welcome">欢迎您,&nbsp;</span>
-        <span class="m-topbar__username">e</span>
-        <span class="m-topbar__userpic">
+    <li class="m-nav__item m-topbar__user-profile m-topbar__user-profile--img  m-dropdown m-dropdown--medium m-dropdown--arrow m-dropdown--header-bg-fill m-dropdown--align-right m-dropdown--mobile-full-width m-dropdown--skin-light" m-dropdown-toggle="click">
+        <a href="#" class="m-nav__link m-dropdown__toggle">
+            <span class="m-topbar__welcome">@L["Welcome"],&nbsp;</span>
+            <span class="m-topbar__username">@appUser.Name</span>
+            <span class="m-topbar__userpic">
+                @if (string.IsNullOrEmpty(appUser.Avatar))
+                {
+                    <img src="~/media/img/users/defAvatar.jpg" class="m--img-rounded m--marginless m--img-centered" alt="@appUser.Name" />
 
-@if (string.IsNullOrEmpty(appUser.Avatar))
-            {
-            <img src="~/media/img/users/defAvatar.jpg" class="m--img-rounded m--marginless m--img-centered" alt="@appUser.Name" />
-
-            }
-            else
-            {
-            <img src="@appUser.Avatar" class="m--img-rounded m--marginless m--img-centered" alt="@appUser.Name" />
-}
-</span>
-</a>
-<div class="m-dropdown__wrapper">
-    <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
-    <div class="m-dropdown__inner">
-        <div class="m-dropdown__header m--align-center" style="background: url(/media/img/users/user_profile_bg.jpg); background-size: cover;">
-            <div class="m-card-user m-card-user--skin-dark">
-                <div class="m-card-user__details">
-                    <span class="m-card-user__name m--font-weight-500">e</span>
-                    <a href="" class="m-card-user__email m--font-weight-300 m-link">l</a>
+                }
+                else
+                {
+                    <img src="@appUser.Avatar" class="m--img-rounded m--marginless m--img-centered" alt="@appUser.Name" />
+                }
+            </span>
+        </a>
+        <div class="m-dropdown__wrapper">
+            <span class="m-dropdown__arrow m-dropdown__arrow--right m-dropdown__arrow--adjust"></span>
+            <div class="m-dropdown__inner">
+                <div class="m-dropdown__header m--align-center" style="background: url(/media/img/users/user_profile_bg.jpg); background-size: cover;">
+                    <div class="m-card-user m-card-user--skin-dark">
+                        <div class="m-card-user__details">
+                            <span class="m-card-user__name m--font-weight-500">@appUser.Name</span>
+                            <a href="" class="m-card-user__email m--font-weight-300 m-link">@appUser.Email</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="m-dropdown__body">
+                    <div class="m-dropdown__content">
+                        <ul class="m-nav m-nav--skin-light">
+                            <li class="m-nav__section m--hide">
+                                <span class="m-nav__section-text">Section</span>
+                            </li>
+                            <li class="m-nav__item">
+                                <a asp-area="" asp-controller="UserManage" asp-action="Profile" class="m-nav__link">
+                                    <i class="m-nav__link-icon flaticon-profile-1"></i>
+                                    <span class="m-nav__link-title">
+                                        <span class="m-nav__link-wrap">
+                                            <span class="m-nav__link-text">@L["My Profile"]</span>
+                                        </span>
+                                    </span>
+                                </a>
+                            </li>
+                            <li class="m-nav__item">
+                                <a asp-area="" asp-controller="UserManage" asp-action="ChangePassword" class="m-nav__link">
+                                    <i class="m-nav__link-icon flaticon-chat-1"></i>
+                                    <span class="m-nav__link-text">@L["Change Password"]</span>
+                                </a>
+                            </li>
+                            <li class="m-nav__separator m-nav__separator--fit">
+                            </li>
+                            <li class="m-nav__item">
+                                <a asp-area="" asp-controller="Account" asp-action="Logout" class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">@L["Sign Out"]</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-        <div class="m-dropdown__body">
-            <div class="m-dropdown__content">
-                <ul class="m-nav m-nav--skin-light">
-                    <li class="m-nav__section m--hide">
-                        <span class="m-nav__section-text">Section</span>
-                    </li>
-                    <li class="m-nav__item">
-                        <a asp-area="" asp-controller="UserManage" asp-action="Profile" class="m-nav__link">
-                            <i class="m-nav__link-icon flaticon-profile-1"></i>
-                            <span class="m-nav__link-title">
-                                <span class="m-nav__link-wrap">
-                                    <span class="m-nav__link-text">]</span>
-                                </span>
-                            </span>
-                        </a>
-                    </li>
-                    <li class="m-nav__item">
-                        <a asp-area="" asp-controller="UserManage" asp-action="ChangePassword" class="m-nav__link">
-                            <i class="m-nav__link-icon flaticon-chat-1"></i>
-                            <span class="m-nav__link-text">]</span>
-                        </a>
-                    </li>
-                    <li class="m-nav__separator m-nav__separator--fit">
-                    </li>
-                    <li class="m-nav__item">
-                        <a asp-area="" asp-controller="Account" asp-action="Logout" class="btn m-btn--pill    btn-secondary m-btn m-btn--custom m-btn--label-brand m-btn--bolder">]</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </div>
-</div>
-</li>
+    </li>
 }
 else
 {
-<style>
-
-    @@media (min-width: 1025px) {
-        .btn {
-            margin-top: 15px;
+    <style>
+        @@media (min-width: 1025px) {
+            .btn {
+                margin-top: 15px;
+            }
         }
-    }
 
-    @@media (max-width: 1024px) {
-        .btn {
-            margin-top: 5px;
+        @@media (max-width: 1024px) {
+            .btn {
+                margin-top: 5px;
+            }
         }
-    }
-</style>
-<li class="m-nav__item">
-    <a asp-controller="Account"
-       asp-action="Login"
-       class="btn m-btn m-btn--pill m-btn--gradient-from-focus m-btn--gradient-to-danger">
-        &nbsp;&nbsp;@L["Sign In"]&nbsp;&nbsp;
-    </a>
-</li>
-<li class="m-nav__item">
-    <a asp-controller="Account"
-       asp-action="Register"
-       class="btn m-btn m-btn--pill m-btn--gradient-from-focus m-btn--gradient-to-danger">
-        &nbsp;&nbsp;@L["Sign Up"]&nbsp;&nbsp;
-    </a>
-</li>
+    </style>
+    <li class="m-nav__item">
+        <a asp-controller="Account"
+           asp-action="Login"
+           class="btn m-btn m-btn--pill m-btn--gradient-from-focus m-btn--gradient-to-danger">
+            &nbsp;&nbsp;@L["Sign In"]&nbsp;&nbsp;
+        </a>
+    </li>
+    <li class="m-nav__item">
+        <a asp-controller="Account"
+           asp-action="Register"
+           class="btn m-btn m-btn--pill m-btn--gradient-from-focus m-btn--gradient-to-danger">
+            &nbsp;&nbsp;@L["Sign Up"]&nbsp;&nbsp;
+        </a>
+    </li>
 }

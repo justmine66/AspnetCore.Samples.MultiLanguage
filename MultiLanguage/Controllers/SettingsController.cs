@@ -8,8 +8,7 @@ namespace MultiLanguage.Controllers
     public class SettingsController : AbstractAppController
     {
         [HttpPost]
-        [Route("language")]
-        public IActionResult SetLanguage(string culture, string returnUrl = null)
+        public IActionResult Language(string culture, string returnUrl = null)
         {
             Response.Cookies.Append(
                 CookieRequestCultureProvider.DefaultCookieName,

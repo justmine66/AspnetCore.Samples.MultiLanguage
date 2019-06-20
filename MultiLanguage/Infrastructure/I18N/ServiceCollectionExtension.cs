@@ -14,10 +14,11 @@ namespace MultiLanguage.Infrastructure.I18N
             services.Configure<RequestLocalizationOptions>(options =>
             {
                 var cultures = config.GetSupportedCultures();
+                var uiCultures = config.GetSupportedUICultures();
 
                 options.DefaultRequestCulture = new RequestCulture(CultureInfo.CurrentUICulture);
                 options.SupportedCultures = cultures;
-                options.SupportedUICultures = cultures;
+                options.SupportedUICultures = uiCultures;
             });
 
             services.AddLocalization(options => options.ResourcesPath = "Resources");

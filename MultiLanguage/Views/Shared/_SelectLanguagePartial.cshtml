@@ -5,7 +5,7 @@
       asp-action="Language"
       asp-route-returnurl="@string.Concat(request.Path,request.QueryString)"
       method="post"
-      id="set_language_form">
+      id="setting_language_form">
     <div class="m-list-settings__heading">@L["Language:"]</div>
     @foreach (var culture in G11N.SupportedUICultures)
     {
@@ -17,8 +17,8 @@
                         <input type="radio"
                                name="culture"
                                value="@culture.Name"
-                               onchange="document.getElementById('set_language_form').submit()"
-                               checked="@(culture.Name==L10N.UiCulture.Name?"checked":"")">
+                               onchange="document.getElementById('setting_language_form').submit()"
+                               checked="@(culture.Name==L10N.UiCulture.Name)">
                         <span></span>
                     </label>
                 </span>
