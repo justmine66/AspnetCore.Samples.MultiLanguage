@@ -4,10 +4,10 @@ using Microsoft.AspNetCore.Localization;
 
 namespace MultiLanguage.Infrastructure.I18N
 {
-    public class L10NManager : IL10NManager
+    public class L10NAccessor : IL10NAccessor
     {
         private readonly RequestCulture _requestCulture;
-        public L10NManager(IHttpContextAccessor accessor)
+        public L10NAccessor(IHttpContextAccessor accessor)
         {
             _requestCulture = accessor.HttpContext.Features.Get<IRequestCultureFeature>().RequestCulture;
         }

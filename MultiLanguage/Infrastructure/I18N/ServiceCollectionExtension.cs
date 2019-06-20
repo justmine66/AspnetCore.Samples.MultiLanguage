@@ -23,8 +23,8 @@ namespace MultiLanguage.Infrastructure.I18N
 
             services.AddLocalization(options => options.ResourcesPath = "Resources");
 
-            services.AddScoped<IG11NManager, G11NManager>();
-            services.AddScoped<IL10NManager, L10NManager>();
+            services.AddScoped<IG11NAccessor, G11NAccessor>();
+            services.AddScoped<IL10NAccessor, L10NAccessor>();
 
             return services;
         }

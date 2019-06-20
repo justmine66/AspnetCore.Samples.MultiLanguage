@@ -51,7 +51,7 @@ namespace MultiLanguage
                 app.UseExceptionHandler("/Home/Error");
             }
 
-            app.UseI18N(Configuration);
+            app.UseRequestLocalization();
             app.UseStaticFiles();
             app.UseCookiePolicy();
 

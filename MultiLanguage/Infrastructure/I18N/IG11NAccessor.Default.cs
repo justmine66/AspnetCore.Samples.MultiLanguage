@@ -5,10 +5,10 @@ using System.Globalization;
 
 namespace MultiLanguage.Infrastructure.I18N
 {
-    public class G11NManager : IG11NManager
+    public class G11NAccessor : IG11NAccessor
     {
         private readonly RequestLocalizationOptions _options;
-        public G11NManager(IOptions<RequestLocalizationOptions> options)
+        public G11NAccessor(IOptions<RequestLocalizationOptions> options)
         {
             _options = options.Value;
         }
